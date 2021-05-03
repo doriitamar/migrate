@@ -261,18 +261,18 @@ class ClustersClient(dbclient):
                     print(cluster_resp)
         # add cluster ACLs
         # loop through and reapply cluster ACLs
-        with open(acl_cluster_log, 'r') as acl_fp:
-            for x in acl_fp:
-                data = json.loads(x)
-                cluster_name = data['cluster_name']
-                print(f'Applying acl for {cluster_name}')
-                acl_args = {'access_control_list' : self.build_acl_args(data['access_control_list'])}
-                cid = self.get_cluster_id_by_name(cluster_name)
-                if cid is None:
-                    raise ValueError('Cluster id must exist in new env. Re-import cluster configs.')
-                api = f'/preview/permissions/clusters/{cid}'
-                resp = self.put(api, acl_args)
-                print(resp)
+        #with open(acl_cluster_log, 'r') as acl_fp:
+        #    for x in acl_fp:
+        #        data = json.loads(x)
+        #        cluster_name = data['cluster_name']
+        #        print(f'Applying acl for {cluster_name}')
+        #        acl_args = {'access_control_list' : self.build_acl_args(data['access_control_list'])}
+        #        cid = self.get_cluster_id_by_name(cluster_name)
+        #        if cid is None:
+        #            raise ValueError('Cluster id must exist in new env. Re-import cluster configs.')
+        #        api = f'/preview/permissions/clusters/{cid}'
+        #        resp = self.put(api, acl_args)
+        #        print(resp)
 
     def import_cluster_policies(self, log_file='cluster_policies.log', acl_log_file='acl_cluster_policies.log'):
         policies_log = self.get_export_dir() + log_file
