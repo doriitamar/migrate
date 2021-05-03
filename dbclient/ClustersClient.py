@@ -56,7 +56,7 @@ class ClustersClient(dbclient):
                 cluster_json['aws_attributes'] = {'instance_profile_arn': iam_role}
         # map old pool ids to new pool ids
         old_pool_id = cluster_json['instance_pool_id']
-        cluster_json['instance_pool_id'] = pool_id_dict[old_pool_id]
+        cluster_json['instance_pool_id'] = pool_id_dict.get(old_pool_id)
         return cluster_json
 
     def delete_all_clusters(self):
