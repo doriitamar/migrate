@@ -126,18 +126,18 @@ class JobsClient(ClustersClient):
                     job_settings['new_cluster'] = self.get_jobs_default_cluster_conf()
                     create_resp_retry = self.post('/jobs/create', job_settings)
         # update the jobs with their ACLs
-        with open(acl_jobs_log, 'r') as acl_fp:
-            job_id_by_name = self.get_job_id_by_name()
-            for line in acl_fp:
-                acl_conf = json.loads(line)
-                current_job_id = job_id_by_name[acl_conf['job_name']]
-                job_path = f'jobs/{current_job_id}'  # contains `/jobs/{job_id}` path
-                api = f'/preview/permissions/{job_path}'
-                # get acl permissions for jobs
-                acl_perms = self.build_acl_args(acl_conf['access_control_list'], True)
-                acl_create_args = {'access_control_list': acl_perms}
-                acl_resp = self.patch(api, acl_create_args)
-                print(acl_resp)
+        #with open(acl_jobs_log, 'r') as acl_fp:
+        #    job_id_by_name = self.get_job_id_by_name()
+        #    for line in acl_fp:
+        #        acl_conf = json.loads(line)
+        #        current_job_id = job_id_by_name[acl_conf['job_name']]
+        #        job_path = f'jobs/{current_job_id}'  # contains `/jobs/{job_id}` path
+        #        api = f'/preview/permissions/{job_path}'
+        #        # get acl permissions for jobs
+        #        acl_perms = self.build_acl_args(acl_conf['access_control_list'], True)
+        #        acl_create_args = {'access_control_list': acl_perms}
+        #        acl_resp = self.patch(api, acl_create_args)
+        #        print(acl_resp)
         # update the imported job names
         self.update_imported_job_names()
 
