@@ -84,7 +84,7 @@ def main():
             print("Complete Instance Profile Import Time: " + str(timedelta(seconds=end - start)))
         print("Start import of cluster policies ...")
         start = timer()
-        cl_c.import_cluster_policies()
+        #cl_c.import_cluster_policies()
         end = timer()
         print("Complete Cluster Policies Creation Time: " + str(timedelta(seconds=end - start)))
         print("Start import of instance pool configurations ...")
